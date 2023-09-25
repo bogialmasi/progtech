@@ -6,6 +6,7 @@ public class Money {
     public double value;
     public Currency currency;
 
+
     public Money(double value, Currency currency) {
         this.value = value;
         this.currency = currency;
@@ -22,10 +23,9 @@ public class Money {
     /**
      * CRTL + ALT + M ---> create method
      */
-    public Money add(Money moneyToAdd) {
-        moneyToAdd = convertMoney(moneyToAdd);
-        if (moneyToAdd == null) return null;
-        this.value += moneyToAdd.getValue(); // Add value of the parameter to this.val
+    public Money add(Money moneyToAdd, BankService bankService) {
+        Money convertedMoney = bankService.convertMoney(moneyToAdd, this.getCurrency());
+        this.value += convertedMoney.getValue(); // Add value of the parameter to this.val
         return this;
     }
 
